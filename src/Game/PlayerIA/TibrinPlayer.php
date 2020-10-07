@@ -41,12 +41,12 @@ class TibrinPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-        if ($this->result->getLastChoiceFor($this->mySide) == 0)
+        if ($this->result->getNbRound() < 2)
         {
             return parent::paperChoice();
         }
         else{
-            if ($this->result->getLastScoreFor($this->mySide) == 5)
+            if ($this->result->getLastScoreFor($this->mySide) >= 2)
             {
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
                     return parent::scissorsChoice();
@@ -55,7 +55,7 @@ class TibrinPlayer extends Player
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
                     return parent::rockChoice();
             }
-            if ($this->result->getLastScoreFor($this->mySide) == 1)
+            if ($this->result->getLastScoreFor($this->mySide) != 0)
             {
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
                     return parent::scissorsChoice();
@@ -73,7 +73,9 @@ class TibrinPlayer extends Player
                 if ($this->result->getLastChoiceFor($this->mySide) == "rock")
                     return parent::rockChoice();
             }
+            return parent::paperChoice();
         }
+        return parent::scissorsChoice();
 
     }
 };
