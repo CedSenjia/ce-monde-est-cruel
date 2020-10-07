@@ -46,7 +46,7 @@ class TibrinPlayer extends Player
             return parent::paperChoice();
         }
         else{
-            if ($this->result->getLastScoreFor($this->mySide) >= 2)
+            if ($this->result->getLastScoreFor($this->mySide) == 3)
             {
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
                     return parent::scissorsChoice();
@@ -54,24 +54,27 @@ class TibrinPlayer extends Player
                     return parent::paperChoice();
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
                     return parent::rockChoice();
-            }
-            if ($this->result->getLastScoreFor($this->mySide) != 0)
+                return parent::rockChoice();
+                }
+            if ($this->result->getLastScoreFor($this->mySide) == 1)
             {
                 if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
-                    return parent::scissorsChoice();
-                if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
-                    return parent::paperChoice();
-                if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
                     return parent::rockChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
+                    return parent::scissorsChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
+                    return parent::paperChoice();
+                return parent::paperChoice();
             }
             else
             {
                 if ($this->result->getLastChoiceFor($this->mySide) == "scissors")
-                    return parent::scissorsChoice();
-                if ($this->result->getLastChoiceFor($this->mySide) == "paper")
                     return parent::paperChoice();
+                if ($this->result->getLastChoiceFor($this->mySide) == "paper")
+                    return parent::scissorsChoice();
                 if ($this->result->getLastChoiceFor($this->mySide) == "rock")
                     return parent::rockChoice();
+                return parent::scissorsChoice();
             }
             return parent::paperChoice();
         }
