@@ -41,8 +41,39 @@ class TibrinPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-
-        return parent::rockChoice();
+        if ($this->result->getLastChoiceFor($this->mySide) == 0)
+        {
+            return parent::paperChoice();
+        }
+        else{
+            if ($this->result->getLastScoreFor($this->mySide) == 5)
+            {
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
+                    return parent::scissorsChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
+                    return parent::paperChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
+                    return parent::rockChoice();
+            }
+            if ($this->result->getLastScoreFor($this->mySide) == 1)
+            {
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors")
+                    return parent::scissorsChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "paper")
+                    return parent::paperChoice();
+                if ($this->result->getLastChoiceFor($this->opponentSide) == "rock")
+                    return parent::rockChoice();
+            }
+            else
+            {
+                if ($this->result->getLastChoiceFor($this->mySide) == "scissors")
+                    return parent::scissorsChoice();
+                if ($this->result->getLastChoiceFor($this->mySide) == "paper")
+                    return parent::paperChoice();
+                if ($this->result->getLastChoiceFor($this->mySide) == "rock")
+                    return parent::rockChoice();
+            }
+        }
 
     }
 };
